@@ -98,7 +98,7 @@ def select_tasks_without_description(cursor):
         select t.* 
         from tasks as t
         where t.description is null 
-              or t.description != '';""")
+              or t.description = '';""")
     return cursor.fetchall()
 
 
