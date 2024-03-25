@@ -97,7 +97,8 @@ def select_tasks_without_description(cursor):
     cursor.execute("""
         select t.* 
         from tasks as t
-        where t.description is null;""")
+        where t.description is null 
+              or t.description != '';""")
     return cursor.fetchall()
 
 
@@ -136,7 +137,7 @@ def main():
             update_user_name(cursor,1,"Smith Sam")
             connection.commit()
 
-            add_task_to_user(cursor,("Fix slack app","Fix bug #12378596","New",2))
+            add_task_to_user(cursor,("Fix slack app","Fix bug #12378596","New",3))
             connection.commit()
             print("tasks not done:")
             print(select_task_not_in_status(cursor,"Done"))
